@@ -10,9 +10,10 @@
           <input
             type="checkbox"
             class="form-check-input"
-            :value="item.complete"
+            :checked="item.complete"
             @change="toggleTodo(index)"
           />
+
           <label
             class="form-check-label"
             v-bind:class="{ todostyle: item.complete }"
