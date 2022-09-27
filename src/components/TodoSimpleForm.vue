@@ -20,10 +20,13 @@
 <script>
 import { ref } from "vue";
 export default {
-  emit: ["add-todo"],
+  emits: ["add-todo"],
   setup(props, { emit }) {
+    // 빈 내용 입력 방지 hasError
     const hasError = ref(false);
+    // 새로운 할일 데이터 todo
     const todo = ref("");
+    // Todo 등록
     const onSubmit = () => {
       if (todo.value === "") {
         hasError.value = true;
@@ -38,9 +41,9 @@ export default {
       todo.value = "";
     };
     return {
-      todo,
-      hasError,
       onSubmit,
+      hasError,
+      todo,
     };
   },
 };

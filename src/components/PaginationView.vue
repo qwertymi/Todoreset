@@ -11,7 +11,7 @@
       <!-- 페이지 링크 -->
       <li
         class="page-item"
-        v-for="index in totalPage"
+        v-for="index in totalpage"
         :key="index"
         :class="page === index ? 'active' : ''"
       >
@@ -21,7 +21,7 @@
       </li>
 
       <!-- 마지막 페이지라면 출력안함 -->
-      <li class="page-item" v-if="page !== totalPage">
+      <li class="page-item" v-if="page !== totalpage">
         <a class="page-link" style="cursor: pointer" @click="getTodo(page + 1)">
           <span aria-hidden="true">&raquo;</span>
         </a>
@@ -32,8 +32,8 @@
 
 <script>
 export default {
-  props: ["page", "totalPage"],
-  setup(prop, { emit }) {
+  props: ["page", "totalpage"],
+  setup(props, { emit }) {
     const getTodo = (page) => {
       emit("get-todo", page);
     };

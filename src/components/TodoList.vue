@@ -1,11 +1,7 @@
 <template>
   <div>
-    <div
-      v-for="(item, index) in todos"
-      v-bind:key="index"
-      class="card mt-2 p-2"
-    >
-      <div class="card-body p-2 d-flex">
+    <div v-for="(item, index) in todos" v-bind:key="index" class="card mt-2">
+      <div class="card-body p-2 d-flex" @click="moveToPage(item.id)">
         <div class="form-check flex-grow-1 align-items-center">
           <input
             type="checkbox"
@@ -13,7 +9,6 @@
             :checked="item.complete"
             @change="toggleTodo(index)"
           />
-
           <label
             class="form-check-label"
             v-bind:class="{ todostyle: item.complete }"
@@ -31,9 +26,10 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
 export default {
   props: ["todos"],
-  emit: ["delete-todo", "toggle-todo"],
+  emits: ["delete-todo", "toggle-todo"],
   setup(props, { emit }) {
     const deleteTodo = (index) => {
       emit("delete-todo", index);
@@ -41,9 +37,22 @@ export default {
     const toggleTodo = (index) => {
       emit("toggle-todo", index);
     };
+
+    const router = useRouter();
+    const moveToPage = (id) => {
+      // router 를 이용해서 id 를 전송해준다.
+      // router.push(`/todos/${id}`);
+      router.push({
+        name: "Todo",
+        params: {
+          id,
+        },
+      });
+    };
     return {
       deleteTodo,
       toggleTodo,
+      moveToPage,
     };
   },
 };
