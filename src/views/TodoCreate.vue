@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <h2>Todo Edit</h2>
-    <TodoForm :editing="true" />
+    <h1>Todo Create</h1>
+    <TodoForm />
   </div>
 </template>
 
@@ -16,5 +16,4 @@ export default {
   },
 };
 </script>
-
 <style></style>

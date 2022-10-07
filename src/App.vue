@@ -1,51 +1,42 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <RouterLink class="navbar-brand" :to="{ name: 'Home' }"
-        >My Todo list</RouterLink
-      >
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <RouterLink
-              class="nav-link active"
-              aria-current="page"
-              :to="{ name: 'Home' }"
-              >Home</RouterLink
-            >
-          </li>
-          <li class="nav-item">
-            <RouterLink class="nav-link" :to="{ name: 'Todos' }"
-              >Todo list</RouterLink
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="https://github.com/qwertymi/Todorest"
-              target="_blank"
-              >Github</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <RouterView />
+  <div>
+    <NavBar />
+    <RouterView />
+    <Transition name="fade">
+      <ToastBox />
+    </Transition>
+  </div>
 </template>
-<script></script>
-<style>
+<script>
+import ToastBox from "@/components/ToastBox.vue";
+import NavBar from "@/components/NavBar.vue";
+export default {
+  components: {
+    ToastBox,
+    NavBar,
+  },
+  setup() {
+    return {};
+  },
+};
+</script>
+<style scoped>
 #app {
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
